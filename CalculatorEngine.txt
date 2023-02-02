@@ -1,0 +1,48 @@
+package final2;
+
+public class CalculatorEngine {
+
+	Calculator calculator; // object of the calculator class
+	AdvancedCalculator advancedCalculator;// object of the Advancedcalculator class
+
+	public CalculatorEngine() {
+		calculator = new Calculator(); // calculator object
+		advancedCalculator = new AdvancedCalculator();// Advancedcalculator object
+	}
+
+	// methods for the calcualtions
+	public int add(int n1, int n2) {
+		calculator.setN1(n1);
+		calculator.setN2(n2);
+		return calculator.add();
+	}
+
+	public int sub(int n1, int n2) {
+		calculator.setN1(n1);
+		calculator.setN2(n2);
+		return calculator.sub();
+	}
+
+	public int multi(int n1, int n2) {
+		calculator.setN1(n1);
+		calculator.setN2(n2);
+		return calculator.multi();
+	}
+
+	public int div(int n1, int n2) {
+		calculator.setN1(n1);
+		calculator.setN2(n2);
+		return calculator.div();
+	}
+
+	public double squareRoot(int n) {
+		advancedCalculator.setN1(n);
+		return advancedCalculator.squareRoot();
+	}
+
+	public double power(int n1, int n2) {
+		advancedCalculator.setN1(n1);
+		return advancedCalculator.power();
+	}
+
+}

@@ -1,0 +1,51 @@
+package final2;
+
+import java.util.Scanner;
+
+public class ProceduralParadigms { // the functions are outside the main
+
+	public static double add(double num1, double num2) {
+		return num1 + num2;
+	} // function for the addition
+
+	public static double subtract(double num1, double num2) {
+		return num1 - num2;
+	} // function for the subtraction
+
+	public static double multiply(double num1, double num2) {
+		return num1 * num2;
+	} // function for the multiplication
+
+	public static double divide(double num1, double num2) {
+		return num1 / num2;
+	} // function for the division
+
+	public static void main(String[] args) { // start the program
+		Scanner scanner = new Scanner(System.in); // scanner
+		System.out.println("Enter a number: ");
+		double num1 = scanner.nextDouble(); // the user enters the first number
+		System.out.println("Enter another number: ");
+		double num2 = scanner.nextDouble(); // the user enters the second number
+		System.out.println("Enter an operation (+, -, *, /): ");
+		char operation = scanner.next().charAt(0); // the user enters the operation
+		double result;
+		switch (operation) { // starts the switch to call the functions
+		case '+':
+			result = add(num1, num2); // calling addition function
+			break;
+		case '-':
+			result = subtract(num1, num2); // calling subtraction function
+			break;
+		case '*':
+			result = multiply(num1, num2); // calling multiplication function
+			break;
+		case '/':
+			result = divide(num1, num2); // calling division function
+			break;
+		default:
+			System.out.println("Invalid operator"); // if the user choose any other option, it will appear this message
+			return;
+		}
+		System.out.println("Result: " + result); // the result will be:
+	}
+}

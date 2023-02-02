@@ -1,0 +1,82 @@
+package final2;
+
+import java.util.ArrayList;
+import java.util.Collections;//sorting teams based on their number of correct answers and time taken
+import java.util.Random;
+
+public class Main {
+	// constants
+	static final int MAX_QUESTIONS_SOLVED = 10; // minutes
+	static final int MIN_QUESTIONS_SOLVED = 1; // minute
+	static final int COMPETITION_LENGTH = 300; // minutes
+	static final int QUESTIONS_NUM = 10;
+	static final int TEAMS_NUM = 10;
+
+	public static void main(String[] args) {
+		ArrayList<Team> teams = new ArrayList<>();// creating an array list with the name of teams
+		Random rand = new Random(); // creating a randomise with the name of rand
+// Initialize teams
+		for (int i = 0; i < TEAMS_NUM; i++) {
+			teams.add(new Team("Team " + i, "T" + i));
+		}
+
+		// Simulate contest
+		int timeElapsed = 0;
+		for (int i = 0; i < COMPETITION_LENGTH; i++) {
+			// Select random team and question to attempt
+			Team team = teams.get(rand.nextInt(TEAMS_NUM));
+			int question = rand.nextInt(QUESTIONS_NUM);
+
+			// Calculate time taken to solve question
+			int solveTime = MIN_QUESTIONS_SOLVED + rand.nextInt(MAX_QUESTIONS_SOLVED - MIN_QUESTIONS_SOLVED + 1);
+			timeElapsed += solveTime;
+
+			// Record score for team
+			team.attemptQuestion(question, solveTime, timeElapsed);
+		}
+		// Display results
+		Collections.sort(teams); // sort the elements of the teams Arraylist in ascending order
+		for (Team team : teams) {
+			System.out.println(team);
+		}
+	}
+}
+
+class Team implements Comparable<Team> {// Comparison between teams
+	String name; // attribute
+	String id;// attribute
+	int numCorrect;// attribute
+	int totalTime;// attribute
+
+	Team(String name, String id) {
+		this.name = name;
+		this.id = id;
+		this.numCorrect = 0;
+		this.totalTime = 0;
+	}
+
+	void attemptQuestion(int question, int solveTime, int timeElapsed)// method
+	{
+		if (timeElapsed <= 300) {
+			// Only count attempts that are within the contest time limit
+			numCorrect++;
+			totalTime += solveTime;
+		}
+	}
+
+//override, these methods are overridden from the Comparable<Team>
+	public int compareTo(Team other) { // method
+		if (numCorrect != other.numCorrect) {
+			// Sort by number of correct answers
+			return other.numCorrect - numCorrect;
+		} else {
+			// If number of correct answers is the same, sort by time taken
+			return totalTime - other.totalTime;
+		}
+	}
+
+//override, these methods are overridden from the Comparable<Team>
+	public String toString() { // method
+		return name + " (" + id + "): " + numCorrect + " correct, time taken: " + totalTime + " minutes";
+	}
+}

@@ -1,0 +1,151 @@
+package final2;
+
+import java.awt.*;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+public class Eventdr extends JFrame {
+
+	private JPanel fe;
+	private JTextField txtN1;
+	private JTextField txtN2;
+	private JLabel lblNewLabel_1;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
+	private JButton btnNewButton_3;
+	private JLabel lblNewLabel_2;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Eventdr frame = new Eventdr();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Eventdr() {
+		setTitle("calc");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		fe = new JPanel();
+		fe.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(fe);
+
+		JButton btnExit = new JButton("Exit");
+		btnExit.setBounds(138, 204, 102, 27);
+		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+		btnExit.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				int x = JOptionPane.showConfirmDialog(null, "are you sure", " exit", JOptionPane.OK_CANCEL_OPTION);
+				if (x == 0) {
+					System.exit(0);
+				}
+				// System.exit(0); // event handler
+			}
+		});
+
+		fe.setLayout(null);
+		fe.add(btnExit);
+
+		txtN1 = new JTextField();
+		txtN1.setForeground(new Color(255, 0, 128));
+		txtN1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtN1.setBounds(138, 72, 123, 21);
+		fe.add(txtN1);
+		txtN1.setColumns(10);
+
+		JLabel lblNewLabel = new JLabel("Number 1");
+		lblNewLabel.setBounds(62, 53, 80, 58);
+		fe.add(lblNewLabel);
+
+		// button for +
+		JButton btnNewButton = new JButton("+");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int x = Integer.parseInt(txtN1.getText());
+				int y = Integer.parseInt(txtN2.getText());
+				JOptionPane.showMessageDialog(null, (x + y) + "", "result", JOptionPane.OK_CANCEL_OPTION);
+
+			}
+		});
+
+		btnNewButton.setBounds(64, 153, 49, 21);
+		fe.add(btnNewButton);
+
+		txtN2 = new JTextField();
+		txtN2.setForeground(new Color(255, 0, 128));
+		txtN2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtN2.setBounds(138, 103, 123, 19);
+		fe.add(txtN2);
+		txtN2.setColumns(10);
+
+		lblNewLabel_1 = new JLabel("Number 2");
+		lblNewLabel_1.setBounds(62, 106, 66, 13);
+		fe.add(lblNewLabel_1);
+
+		// button for -
+		btnNewButton_1 = new JButton("-");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				int x = Integer.parseInt(txtN1.getText());
+				int y = Integer.parseInt(txtN2.getText());
+				JOptionPane.showMessageDialog(null, (x - y) + "", "result", JOptionPane.OK_CANCEL_OPTION);
+			}
+		});
+
+		btnNewButton_1.setBounds(117, 153, 49, 21);
+		fe.add(btnNewButton_1);
+
+		btnNewButton_2 = new JButton("*");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int x = Integer.parseInt(txtN1.getText());
+				int y = Integer.parseInt(txtN2.getText());
+				JOptionPane.showMessageDialog(null, (x * y) + "", "result", JOptionPane.OK_CANCEL_OPTION);
+			}
+		});
+
+		btnNewButton_2.setBounds(176, 153, 49, 21);
+		fe.add(btnNewButton_2);
+
+		btnNewButton_3 = new JButton("/");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int x = Integer.parseInt(txtN1.getText());
+				int y = Integer.parseInt(txtN2.getText());
+				JOptionPane.showMessageDialog(null, (x / y) + "", "result", JOptionPane.OK_CANCEL_OPTION);
+			}
+		});
+		btnNewButton_3.setBounds(230, 153, 49, 21);
+		fe.add(btnNewButton_3);
+
+		lblNewLabel_2 = new JLabel("Enter two number and the calculation you need");
+		lblNewLabel_2.setBounds(79, 34, 327, 13);
+		fe.add(lblNewLabel_2);
+	}
+}

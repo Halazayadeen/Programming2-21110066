@@ -1,0 +1,14 @@
+package final2;
+
+public class AdvancedCalculator extends Calculator {
+
+	// this calculator is for square root and power
+
+	public double squareRoot() {
+		return Math.sqrt(getN1()); // returning the square root of n1
+	}
+
+	public double power() {
+		return Math.pow(getN1(), getN2()); // returning n1 raised to the power of n2
+	}
+}
